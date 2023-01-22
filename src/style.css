@@ -1,0 +1,107 @@
+.panel{
+    position: absolute;
+    background-color: lightgoldenrodyellow;
+    border: 5px solid burlywood;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
+}
+.header{
+    left: 41.5%;
+    top: 90px;
+    height: 50px;
+    width: 300px;
+    padding-top: 15px;
+    
+}
+.header-text{
+    font-size: 18px;
+    font-family: "JetBrains Mono",monospace;
+
+}
+.footer{
+    left: 44%;
+    bottom: 2%;
+    height: 50px;
+    width: 200px;
+    padding-top: 10px;
+}
+
+
+.footer-button {
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 40px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+  }
+  
+.footer-button:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  }
+  
+.footer-button:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+  
+.footer-button:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+
+
+.gameCircle{
+    height: 80px; 
+    width: 80px;
+    margin: 10px; 
+    border-radius: 50%;
+    border: 5px solid black;
+}
+.gameBoard{
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    padding: 20px; 
+    width: 500px;
+    position: absolute;
+    left: 33%;
+    top: 20%;
+    background-color: bisque;
+    border: 5px solid burlywood;
+    border-radius: 8%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.player_0{
+    background-color: white;
+}
+.player_1{
+    background-color: blue;
+}
+.player_2{
+    background-color: red;
+}
