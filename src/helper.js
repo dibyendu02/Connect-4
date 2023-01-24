@@ -1,4 +1,7 @@
-export const isWinner = (gameBoard) => {
+export const isWinner = (gameBoard, currentMove, currentPlayer) => {
+    const board = [...gameBoard];
+    board[currentMove] = currentPlayer;
+
     const winLines = [
         [0, 1, 2, 3],
         [4, 5, 6, 7],
@@ -15,14 +18,22 @@ export const isWinner = (gameBoard) => {
     for(let i=0;i<winLines.length;i++){
         const [c1, c2, c3, c4] = winLines[i];
 
-        if(gameBoard[c1] > 0 &&
-            gameBoard[c1]===gameBoard[c2] &&
-            gameBoard[c2]===gameBoard[c3] &&
-            gameBoard[c3]===gameBoard[c4]){
-                return true;
+        if(board[c1] > 0 &&
+            board[c1]===board[c2] &&
+            board[c2]===board[c3] &&
+            board[c3]===board[c4])
+        {
+            return true;
         }
-        return false;
-
     }
+    return false;
 }
 
+export const isDraw = (gameBoard, currentMove, currentPlayer) => {
+    const board = [...gameBoard];
+    board[currentMove] = currentPlayer;
+
+    let count = board.reduce((n, x) => n + (x === 0), 0);
+    console.log(`count ${count}`);
+    return count === 0;
+}

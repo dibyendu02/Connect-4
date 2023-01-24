@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GameCircle from './GameCircle';
 import '../style.css';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { isWinner } from '../helper';
+import { isDraw } from '../helper';
 
 const Player_0 = 0;
 const Player_1 = 1;
 const Player_2 = 2;
+let winPlayer;
 
-const GAME_STATE_START = 0;
+//const GAME_STATE_IDLE = 0;
 const GAME_STATE_PLAYING = 1;
 const GAME_STATE_WIN = 2;
 const GAME_STATE_DRAW = 3;
@@ -17,9 +20,20 @@ const GAME_STATE_DRAW = 3;
 const GameBoard = () => {
     const [gameBoard, setGameBoard] = useState(Array(16).fill(Player_0));
     const [currentPlayer, setCurrentPlayer] = useState(Player_1);
-    const [gameState, setGameState] = useState(GAME_STATE_START);
+    const [gameState, setGameState] = useState(GAME_STATE_PLAYING);
 
     console.log(gameBoard);
+
+    useEffect(() => {
+        initGame();
+    },[]);
+
+    const initGame = () => {
+        console.log('init game');
+        setGameBoard(Array(16).fill(Player_0));
+        setCurrentPlayer(Player_1);
+        setGameState(GAME_STATE_PLAYING);
+    }
 
     const initBoard = () => {
         // setCurrentPlayer(Player_1);
@@ -39,6 +53,19 @@ const GameBoard = () => {
         // board[id] = currentPlayer;
         // setGameBoard(board);
 
+        if(gameBoard[id] !== Player_0) return;
+        if(gameState !== GAME_STATE_PLAYING) return;
+        
+        if(isWinner(gameBoard, id, currentPlayer)){
+            setGameState(GAME_STATE_WIN);
+            winPlayer = currentPlayer;
+        }
+        if(isDraw(gameBoard, id, currentPlayer)){
+            setGameState(GAME_STATE_DRAW);
+            winPlayer = Player_0;
+        }
+        
+
         setGameBoard(prev => {
             return prev.map((circle, pos) => {
                 if (pos === id) return currentPlayer;
@@ -56,11 +83,11 @@ const GameBoard = () => {
     }
     return(
         <>
-        <Header player={currentPlayer}/>
+        <Header gameState={gameState} player={currentPlayer} winPlayer={winPlayer}/>
         <div className='gameBoard'>
             {initBoard()}
         </div>
-        <Footer/>
+        <Footer onClickEvent={initGame}/>
         </>
     ) 
 }
